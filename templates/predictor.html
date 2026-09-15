@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>EduPredict | Prediction</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        🎓 EduPredict
+    </div>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/predictor">Predictor</a>
+    </div>
+
+</nav>
+
+
+<section class="predict-section">
+
+    <div class="form-container">
+
+        <div class="form-heading">
+
+            <span>🤖 AI PREDICTION</span>
+
+            <h1>
+                Student Performance
+            </h1>
+
+            <p>
+                Enter your academic details to predict your performance.
+            </p>
+
+        </div>
+
+
+        <form action="/predict" method="POST">
+
+            <div class="form-grid">
+
+                <div class="input-box">
+
+                    <label>Student Name</label>
+
+                    <input
+                        type="text"
+                        name="student_name"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <label>Daily Study Hours</label>
+
+                    <input
+                        type="number"
+                        name="study_hours"
+                        placeholder="Example: 5"
+                        min="0"
+                        max="24"
+                        step="0.1"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <label>Attendance (%)</label>
+
+                    <input
+                        type="number"
+                        name="attendance"
+                        placeholder="Example: 85"
+                        min="0"
+                        max="100"
+                        step="0.1"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <label>Previous Marks (%)</label>
+
+                    <input
+                        type="number"
+                        name="previous_marks"
+                        placeholder="Example: 72"
+                        min="0"
+                        max="100"
+                        step="0.1"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <label>Internal Marks (%)</label>
+
+                    <input
+                        type="number"
+                        name="internal_marks"
+                        placeholder="Example: 75"
+                        min="0"
+                        max="100"
+                        step="0.1"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <label>Assignment Score (%)</label>
+
+                    <input
+                        type="number"
+                        name="assignment_score"
+                        placeholder="Example: 80"
+                        min="0"
+                        max="100"
+                        step="0.1"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <label>Daily Sleep Hours</label>
+
+                    <input
+                        type="number"
+                        name="sleep_hours"
+                        placeholder="Example: 7"
+                        min="0"
+                        max="24"
+                        step="0.1"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <label>Extracurricular Activity</label>
+
+                    <select name="extracurricular">
+
+                        <option value="1">
+                            Yes
+                        </option>
+
+                        <option value="0">
+                            No
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <button type="submit" class="predict-btn">
+                🔮 Predict My Performance
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<footer>
+    © 2026 EduPredict | AI Student Analytics
+</footer>
+
+
+</body>
+
+</html>
