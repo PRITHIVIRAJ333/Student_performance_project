@@ -1,23 +1,33 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
 import pickle
 
-data = pd.read_csv("dataset.csv")
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_absolute_error
 
-features = [
-    "study_hours",
-    "attendance",
-    "previous_marks",
-    "internal_marks",
-    "assignment_score",
-    "sleep_hours",
-    "extracurricular"
+# Load dataset
+df = pd.read_csv("dataset.csv")
+
+print("Dataset loaded successfully!")
+print("Total records:", len(df))
+
+# Input features
+X = df[
+    [
+        "study_hours",
+        "attendance",
+        "previous_marks",
+        "internal_marks",
+        "assignment_score",
+        "sleep_hours",
+        "extracurricular"
+    ]
 ]
 
-X = data[features]
-y = data["final_score"]
+# Output
+y = df["final_score"]
 
+# Split dataset
 X_train, X_test, y_train, y_test = train_test_split(
     X,
     y,
@@ -25,19 +35,25 @@ X_train, X_test, y_train, y_test = train_test_split(
     random_state=42
 )
 
+# Create model
 model = RandomForestRegressor(
-    n_estimators=100,
+    n_estimators=200,
     random_state=42
 )
 
+# Train model
 model.fit(X_train, y_train)
 
+# Test model
+predictions = model.predict(X_test)
+
+error = mean_absolute_error(y_test, predictions)
+
+print("Model trained successfully!")
+print("Mean Absolute Error:", round(error, 2))
+
+# Save model
 with open("model.pkl", "wb") as file:
     pickle.dump(model, file)
 
-print("Model trained successfully!")
-
-accuracy = model.score(X_test, y_test)
-
-print("Model R2 Score:", accuracy)
 print("model.pkl created successfully!")

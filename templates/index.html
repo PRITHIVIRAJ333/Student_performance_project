@@ -1,171 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>EduPredict | AI Student Performance</title>
-
+    <title>EduPredict - Student Performance Predictor</title>
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style.css') }}">
-
 </head>
 
 <body>
 
-<nav class="navbar">
+<nav>
+    <h2>EduPredict</h2>
 
-    <div class="logo">
-        🎓 EduPredict
-    </div>
-
-    <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/predictor">Predictor</a>
-        <a href="#about">About</a>
-    </div>
-
+    <a href="/">Home</a>
+    <a href="/predictor">Predict</a>
 </nav>
-
 
 <section class="hero">
 
-    <div class="hero-content">
+    <h1>
+        Student Performance
+        <span>Predictor</span>
+    </h1>
 
-        <div class="badge">
-            🤖 AI POWERED EDUCATION
-        </div>
+    <p>
+        Predict student academic performance using
+        Machine Learning.
+    </p>
 
-        <h1>
-            Student Performance
-            <span>Predictor</span>
-        </h1>
-
-        <p>
-            Predict academic performance using
-            Machine Learning and discover ways
-            to improve your results.
-        </p>
-
-        <a href="/predictor" class="primary-btn">
-            Start Prediction →
-        </a>
-
-    </div>
-
-
-    <div class="hero-card">
-
-        <div class="card-icon">
-            📊
-        </div>
-
-        <h3>Smart Analytics</h3>
-
-        <p>
-            Analyze study habits, attendance,
-            marks and academic activities.
-        </p>
-
-        <div class="mini-stat">
-
-            <span>AI Prediction</span>
-
-            <strong>ML</strong>
-
-        </div>
-
-    </div>
+    <a href="/predictor">
+        <button>Start Prediction</button>
+    </a>
 
 </section>
-
 
 <section class="features">
 
-    <h2>How It Works</h2>
+    <div>
+        <h2>🤖 AI Prediction</h2>
+        <p>Machine Learning based performance prediction.</p>
+    </div>
 
-    <div class="feature-container">
+    <div>
+        <h2>📊 Performance Analysis</h2>
+        <p>Understand your academic performance.</p>
+    </div>
 
-        <div class="feature-card">
-
-            <div>📝</div>
-
-            <h3>Enter Details</h3>
-
-            <p>
-                Enter your academic and
-                study information.
-            </p>
-
-        </div>
-
-
-        <div class="feature-card">
-
-            <div>🤖</div>
-
-            <h3>AI Prediction</h3>
-
-            <p>
-                Machine Learning analyzes
-                your academic data.
-            </p>
-
-        </div>
-
-
-        <div class="feature-card">
-
-            <div>📈</div>
-
-            <h3>Get Results</h3>
-
-            <p>
-                View predicted score and
-                improvement suggestions.
-            </p>
-
-        </div>
-
+    <div>
+        <h2>💡 Smart Suggestions</h2>
+        <p>Get recommendations for improvement.</p>
     </div>
 
 </section>
-
-
-<section class="about" id="about">
-
-    <h2>About EduPredict</h2>
-
-    <p>
-        EduPredict is a Machine Learning based
-        web application designed to help students
-        understand their academic performance.
-    </p>
-
-    <div class="tech-list">
-
-        <span>Python</span>
-        <span>Flask</span>
-        <span>Machine Learning</span>
-        <span>Scikit-learn</span>
-        <span>HTML5</span>
-        <span>CSS3</span>
-        <span>JavaScript</span>
-
-    </div>
-
-</section>
-
-
-<footer>
-    © 2026 EduPredict | Student Performance Predictor
-</footer>
-
 
 </body>
-
 </html>

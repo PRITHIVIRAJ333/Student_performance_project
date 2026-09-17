@@ -1,122 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>EduPredict | Result</title>
-
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
-
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-<nav class="navbar">
+<div class="container result">
 
-    <div class="logo">
-        🎓 EduPredict
+    <h1>Prediction Result</h1>
+
+    <h2>Hello {{ name }} 👋</h2>
+
+    <div class="score">
+        {{ score }}%
     </div>
 
-    <div class="nav-links">
-
-        <a href="/">Home</a>
-
-        <a href="/predictor">
-            Predictor
-        </a>
-
-    </div>
-
-</nav>
-
-
-<section class="result-section">
-
-<div class="result-card">
-
-    <div class="success-icon">
-        {{ emoji }}
-    </div>
-
-    <p class="result-label">
-        PERFORMANCE PREDICTION FOR
-    </p>
-
-    <h1>
-        {{ name }}
-    </h1>
-
-
-    <div class="score-circle">
-
-        <span>
-            {{ prediction }}%
-        </span>
-
-    </div>
-
-
-    <h2 class="performance">
-        {{ performance }}
+    <h2>
+        {{ emoji }} {{ performance }}
     </h2>
 
-    <p>
-        Predicted Academic Performance
-    </p>
+    <h3>Recommendations</h3>
 
-
-    <div class="recommendations">
-
-        <h3>
-            💡 Recommendations
-        </h3>
-
+    <ul>
         {% for recommendation in recommendations %}
-
-        <div class="recommendation">
-
-            ✓ {{ recommendation }}
-
-        </div>
-
+        <li>{{ recommendation }}</li>
         {% endfor %}
+    </ul>
 
-    </div>
-
-
-    <div class="result-buttons">
-
-        <a href="/predictor"
-           class="primary-btn">
-
-            Predict Again
-
-        </a>
-
-        <a href="/"
-           class="secondary-btn">
-
-            Back Home
-
-        </a>
-
-    </div>
+    <a href="/predictor">
+        <button>Predict Again</button>
+    </a>
 
 </div>
 
-</section>
-
-
-<footer>
-    © 2026 EduPredict | AI Student Analytics
-</footer>
-
 </body>
-
 </html>

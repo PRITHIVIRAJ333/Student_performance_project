@@ -2,15 +2,11 @@ from flask import Flask, render_template, request
 import pickle
 import os
 
-app = Flask(
-    __name__,
-    template_folder="../templates",
-    static_folder="../static"
-)
+app = Flask(__name__)
 
+# Load trained model
 model_path = os.path.join(
-    os.path.dirname(__file__),
-    "..",
+    os.path.dirname(os.path.dirname(__file__)),
     "model.pkl"
 )
 
@@ -31,7 +27,7 @@ def predictor():
 @app.route("/predict", methods=["POST"])
 def predict():
 
-    name = request.form["student_name"]
+    name = request.form["name"]
 
     study_hours = float(request.form["study_hours"])
     attendance = float(request.form["attendance"])
@@ -41,7 +37,7 @@ def predict():
     sleep_hours = float(request.form["sleep_hours"])
     extracurricular = int(request.form["extracurricular"])
 
-    prediction = model.predict([[
+    input_data = [[
         study_hours,
         attendance,
         previous_marks,
@@ -49,26 +45,28 @@ def predict():
         assignment_score,
         sleep_hours,
         extracurricular
-    ]])[0]
+    ]]
 
-    prediction = round(float(prediction), 2)
+    predicted_score = model.predict(input_data)[0]
 
-    if prediction >= 90:
+    # Keep score between 0 and 100
+    predicted_score = max(0, min(100, predicted_score))
+
+    # Performance category
+    if predicted_score >= 90:
         performance = "Excellent"
         emoji = "🏆"
-
-    elif prediction >= 75:
+    elif predicted_score >= 75:
         performance = "Good"
         emoji = "🌟"
-
-    elif prediction >= 50:
+    elif predicted_score >= 50:
         performance = "Average"
         emoji = "📚"
-
     else:
-        performance = "Needs Improvement"
+        performance = "Poor"
         emoji = "💪"
 
+    # Recommendations
     recommendations = []
 
     if study_hours < 4:
@@ -78,38 +76,38 @@ def predict():
 
     if attendance < 75:
         recommendations.append(
-            "Try to maintain attendance above 75%."
+            "Try to improve your attendance."
         )
 
     if previous_marks < 50:
         recommendations.append(
-            "Focus more on previous topics."
+            "Focus on improving your previous academic performance."
         )
 
     if internal_marks < 50:
         recommendations.append(
-            "Improve your internal examination preparation."
+            "Prepare more for internal examinations."
         )
 
     if assignment_score < 50:
         recommendations.append(
-            "Complete assignments regularly."
+            "Complete assignments regularly and on time."
         )
 
     if sleep_hours < 6:
         recommendations.append(
-            "Maintain at least 6 hours of proper sleep."
+            "Maintain at least 6-8 hours of sleep."
         )
 
     if not recommendations:
         recommendations.append(
-            "Great job! Maintain your current study routine."
+            "Keep maintaining your current study habits!"
         )
 
     return render_template(
         "result.html",
         name=name,
-        prediction=prediction,
+        score=round(predicted_score, 2),
         performance=performance,
         emoji=emoji,
         recommendations=recommendations
@@ -117,4 +115,4 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
