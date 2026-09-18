@@ -1,39 +1,127 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Prediction Result</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Prediction Result | EduPredict</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 
 <body>
 
-<div class="container result">
 
-    <h1>Prediction Result</h1>
+<nav class="navbar">
 
-    <h2>Hello {{ name }} 👋</h2>
-
-    <div class="score">
-        {{ score }}%
+    <div class="logo">
+        Edu<span>Predict</span>
     </div>
 
-    <h2>
-        {{ emoji }} {{ performance }}
-    </h2>
+    <div class="nav-links">
 
-    <h3>Recommendations</h3>
+        <a href="/">Home</a>
 
-    <ul>
-        {% for recommendation in recommendations %}
-        <li>{{ recommendation }}</li>
-        {% endfor %}
-    </ul>
+        <a href="/predictor">
+            Predict Again
+        </a>
 
-    <a href="/predictor">
-        <button>Predict Again</button>
-    </a>
+    </div>
+
+</nav>
+
+
+<div class="result-container">
+
+    <div class="result-card">
+
+
+        <div class="badge">
+            🎯 Prediction Complete
+        </div>
+
+
+        <h1>
+            Hello, {{ name }} 👋
+        </h1>
+
+
+        <p>
+            Your predicted final score is
+        </p>
+
+
+        <div class="score">
+            {{ score }}%
+        </div>
+
+
+        <div class="performance">
+
+            <span class="performance-emoji">
+                {{ emoji }}
+            </span>
+
+            <h2>
+                {{ performance }}
+            </h2>
+
+        </div>
+
+
+        <div class="recommendation-box">
+
+            <h3>
+                💡 Recommendations
+            </h3>
+
+            <ul>
+
+                {% for recommendation in recommendations %}
+
+                <li>
+                    {{ recommendation }}
+                </li>
+
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+
+        <a href="/predictor">
+
+            <button class="primary-btn">
+
+                🔄 Predict Again
+
+            </button>
+
+        </a>
+
+
+        <a href="/"
+           class="back-link">
+
+            ← Back to Home
+
+        </a>
+
+
+    </div>
 
 </div>
 
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
 </body>
+
 </html>

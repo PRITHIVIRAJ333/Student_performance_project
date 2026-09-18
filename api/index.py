@@ -2,7 +2,11 @@ from flask import Flask, render_template, request
 import pickle
 import os
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    template_folder="../templates",
+    static_folder="../static"
+)
 
 # Load trained model
 model_path = os.path.join(
@@ -56,12 +60,15 @@ def predict():
     if predicted_score >= 90:
         performance = "Excellent"
         emoji = "🏆"
+
     elif predicted_score >= 75:
         performance = "Good"
         emoji = "🌟"
+
     elif predicted_score >= 50:
         performance = "Average"
         emoji = "📚"
+
     else:
         performance = "Poor"
         emoji = "💪"
@@ -96,12 +103,12 @@ def predict():
 
     if sleep_hours < 6:
         recommendations.append(
-            "Maintain at least 6-8 hours of sleep."
+            "Maintain a healthy 6-8 hours of sleep."
         )
 
     if not recommendations:
         recommendations.append(
-            "Keep maintaining your current study habits!"
+            "Excellent! Keep maintaining your current study habits."
         )
 
     return render_template(

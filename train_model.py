@@ -5,13 +5,26 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error
 
-# Load dataset
+
+# =====================================
+# LOAD DATASET
+# =====================================
+
 df = pd.read_csv("dataset.csv")
+
+print()
+print("===================================")
+print(" STUDENT PERFORMANCE PREDICTOR")
+print("===================================")
 
 print("Dataset loaded successfully!")
 print("Total records:", len(df))
 
-# Input features
+
+# =====================================
+# INPUT FEATURES
+# =====================================
+
 X = df[
     [
         "study_hours",
@@ -24,36 +37,76 @@ X = df[
     ]
 ]
 
-# Output
+
+# =====================================
+# TARGET
+# =====================================
+
 y = df["final_score"]
 
-# Split dataset
+
+# =====================================
+# TRAIN TEST SPLIT
+# =====================================
+
 X_train, X_test, y_train, y_test = train_test_split(
     X,
     y,
-    test_size=0.2,
+    test_size=0.20,
     random_state=42
 )
 
-# Create model
+
+# =====================================
+# RANDOM FOREST MODEL
+# =====================================
+
 model = RandomForestRegressor(
-    n_estimators=200,
-    random_state=42
+    n_estimators=300,
+    random_state=42,
+    max_depth=12
 )
 
-# Train model
+
+# =====================================
+# TRAIN
+# =====================================
+
+print()
+print("Training model...")
+
 model.fit(X_train, y_train)
 
-# Test model
+print("Model trained successfully!")
+
+
+# =====================================
+# TEST
+# =====================================
+
 predictions = model.predict(X_test)
 
-error = mean_absolute_error(y_test, predictions)
+error = mean_absolute_error(
+    y_test,
+    predictions
+)
 
-print("Model trained successfully!")
-print("Mean Absolute Error:", round(error, 2))
+print(
+    "Mean Absolute Error:",
+    round(error, 2)
+)
 
-# Save model
+
+# =====================================
+# SAVE MODEL
+# =====================================
+
 with open("model.pkl", "wb") as file:
+
     pickle.dump(model, file)
 
+
+print()
 print("model.pkl created successfully!")
+print("===================================")
+print()
